@@ -58,9 +58,9 @@
 
 ### Verdict & Report
 
-- [ ] **VERD-01**: Veredito ADERENTE/PENDENTE/SUSPEITO com score de confiança (0.0 a 1.0)
-- [ ] **VERD-02**: Lista de itens verificados com status (OK/DIVERGENTE/AUSENTE/SUSPEITO)
-- [ ] **VERD-03**: Exigências automáticas no formato real do CREA (maiúsculas, base legal)
+- [x] **VERD-01**: Veredito ADERENTE/PENDENTE/SUSPEITO com score de confiança (0.0 a 1.0)
+- [x] **VERD-02**: Lista de itens verificados com status (OK/DIVERGENTE/AUSENTE/SUSPEITO)
+- [x] **VERD-03**: Exigências automáticas no formato real do CREA (maiúsculas, base legal)
 - [ ] **VERD-04**: Relatório estruturado em JSON
 - [ ] **VERD-05**: Relatório legível em Markdown
 - [ ] **VERD-06**: Pipeline processa os 2 pares reais de teste e gera relatórios em output/
@@ -122,9 +122,9 @@
 | COMP-01 | Phase 6 | Complete |
 | COMP-02 | Phase 6 | Complete |
 | COMP-03 | Phase 6 | Complete |
-| VERD-01 | Phase 7 | Pending |
-| VERD-02 | Phase 7 | Pending |
-| VERD-03 | Phase 7 | Pending |
+| VERD-01 | Phase 7 | Complete |
+| VERD-02 | Phase 7 | Complete |
+| VERD-03 | Phase 7 | Complete |
 | VERD-04 | Phase 7 | Pending |
 | VERD-05 | Phase 7 | Pending |
 | VERD-06 | Phase 7 | Pending |

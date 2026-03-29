@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Executing Phase 07
-stopped_at: Phase 7 context gathered
-last_updated: "2026-03-29T06:41:25.619Z"
+stopped_at: Phase 07 Plan 01 complete — verdict.py scoring engine
+last_updated: "2026-03-29T07:00:00.000Z"
 progress:
   total_phases: 7
   completed_phases: 6
   total_plans: 15
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 07 (verdict-exigencias-report) — EXECUTING
-Plan: 1 of 3
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -76,6 +76,9 @@ Plan: 1 of 3
 - [Phase 06-complementary-docs-compliance]: Exigencia texto PAR. 1 uppercase (not par. 1) to match CREA all-caps declarative format
 - [Phase 06-complementary-docs-compliance]: _verificacoes_1160_overrides returns empty list — Res. 1.160/2025 text not available in PDF provided
 - [Phase 06-complementary-docs-compliance]: Auto-approved Task 2 checkpoint (auto_advance=true) — pipeline wired correctly, unit tests pass
+- [Phase 07-01-verdict]: Compliance items use peso=0.0 — they generate exigencias already; adding to weighted average would double-penalize
+- [Phase 07-01-verdict]: Single PENALIDADE_METADATA_SUSPEITO applied per analysis run (break after first anomalous doc)
+- [Phase 07-01-verdict]: KNOCKOUT_CAP_CRITICO=0.49 (CPF/CNPJ/CREA), KNOCKOUT_CAP_EMPRESA=0.79 (empresa divergente)
 
 ### Blockers/Concerns
 
@@ -84,6 +87,6 @@ Plan: 1 of 3
 
 ## Session Continuity
 
-Last session: 2026-03-29T06:21:44.119Z
-Stopped at: Phase 7 context gathered
-Resume file: .planning/phases/07-verdict-exigencias-report/07-CONTEXT.md
+Last session: 2026-03-29T07:00:00.000Z
+Stopped at: Phase 07 Plan 01 complete — verdict.py scoring engine (35 tests passing)
+Resume file: .planning/phases/07-verdict-exigencias-report/07-01-SUMMARY.md
