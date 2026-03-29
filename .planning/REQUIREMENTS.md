@@ -61,8 +61,8 @@
 - [x] **VERD-01**: Veredito ADERENTE/PENDENTE/SUSPEITO com score de confiança (0.0 a 1.0)
 - [x] **VERD-02**: Lista de itens verificados com status (OK/DIVERGENTE/AUSENTE/SUSPEITO)
 - [x] **VERD-03**: Exigências automáticas no formato real do CREA (maiúsculas, base legal)
-- [ ] **VERD-04**: Relatório estruturado em JSON
-- [ ] **VERD-05**: Relatório legível em Markdown
+- [x] **VERD-04**: Relatório estruturado em JSON
+- [x] **VERD-05**: Relatório legível em Markdown
 - [ ] **VERD-06**: Pipeline processa os 2 pares reais de teste e gera relatórios em output/
 
 ## v2 Requirements (Deferido)
@@ -125,8 +125,8 @@
 | VERD-01 | Phase 7 | Complete |
 | VERD-02 | Phase 7 | Complete |
 | VERD-03 | Phase 7 | Complete |
-| VERD-04 | Phase 7 | Pending |
-| VERD-05 | Phase 7 | Pending |
+| VERD-04 | Phase 7 | Complete |
+| VERD-05 | Phase 7 | Complete |
 | VERD-06 | Phase 7 | Pending |
 
 **Coverage:** 38 v1 requirements, 38 mapped, 0 unmapped

@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Executing Phase 07
-stopped_at: Phase 07 Plan 01 complete — verdict.py scoring engine
-last_updated: "2026-03-29T07:00:00.000Z"
+status: Ready to execute
+stopped_at: Phase 07 Plan 02 complete — report.py JSON + Markdown generation (16 tests passing)
+last_updated: "2026-03-29T06:55:34.031Z"
 progress:
   total_phases: 7
   completed_phases: 6
   total_plans: 15
-  completed_plans: 13
+  completed_plans: 14
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 07 (verdict-exigencias-report) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -79,6 +79,9 @@ Plan: 2 of 3
 - [Phase 07-01-verdict]: Compliance items use peso=0.0 — they generate exigencias already; adding to weighted average would double-penalize
 - [Phase 07-01-verdict]: Single PENALIDADE_METADATA_SUSPEITO applied per analysis run (break after first anomalous doc)
 - [Phase 07-01-verdict]: KNOCKOUT_CAP_CRITICO=0.49 (CPF/CNPJ/CREA), KNOCKOUT_CAP_EMPRESA=0.79 (empresa divergente)
+- [Phase 07-02-report]: Pydantic model_dump() for Cruzamento/Compliance; manual dict for MetadadosPDF/ResultadoAssinatura dataclasses
+- [Phase 07-02-report]: json.dumps default=str handles datetime/Path without custom encoder; ensure_ascii=False for utf-8 pt-BR text
+- [Phase 07-02-report]: Exigencias section omitted when empty — cleaner ADERENTE reports; section guard in markdown generator
 
 ### Blockers/Concerns
 
@@ -87,6 +90,6 @@ Plan: 2 of 3
 
 ## Session Continuity
 
-Last session: 2026-03-29T07:00:00.000Z
-Stopped at: Phase 07 Plan 01 complete — verdict.py scoring engine (35 tests passing)
-Resume file: .planning/phases/07-verdict-exigencias-report/07-01-SUMMARY.md
+Last session: 2026-03-29T06:55:34.027Z
+Stopped at: Phase 07 Plan 02 complete — report.py JSON + Markdown generation (16 tests passing)
+Resume file: None

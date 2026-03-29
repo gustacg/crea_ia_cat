@@ -135,11 +135,11 @@ Plans:
   5. Exigências em formato CREA maiúsculo com base legal
   6. Relatórios JSON + Markdown em output/ para cada par
   7. Pipeline end-to-end roda nos 2 pares reais sem exceções
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
 - [x] 07-01-PLAN.md — Tests + verdict.py (scoring, knock-outs, item consolidation, exigencias)
-- [ ] 07-02-PLAN.md — Tests + report.py (JSON + Markdown report generation)
+- [x] 07-02-PLAN.md — Tests + report.py (JSON + Markdown report generation)
 - [ ] 07-03-PLAN.md — Wire main.py + integration tests + end-to-end verification
 
 ## Progress
@@ -155,4 +155,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 4. Metadata & Digital Signature | 3/3 | Complete   | 2026-03-29 |
 | 5. Cross-Document Matching | 2/2 | Complete   | 2026-03-29 |
 | 6. Complementary Docs & Compliance | 2/2 | Complete   | 2026-03-29 |
-| 7. Verdict, Exigencias & Report | 1/3 | Executing | 2026-03-29 |
+| 7. Verdict, Exigencias & Report | 2/3 | In Progress|  |
