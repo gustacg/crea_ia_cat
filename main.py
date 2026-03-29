@@ -8,6 +8,8 @@ from crea_cat_ai import analysis
 from crea_cat_ai import metadata, signature
 from crea_cat_ai import matching
 from crea_cat_ai import compliance
+from crea_cat_ai import verdict
+from crea_cat_ai import report
 from crea_cat_ai.ingestion import TipoDocumento
 import config
 
@@ -155,45 +157,84 @@ def main(input_dir: Path | None = None) -> dict:
         if verif.status.value != "CONFORME":
             print(f"  [{verif.status.value}] {verif.requisito}: {verif.detalhes}")
 
-    # Phase 7: placeholder
+    # Phase 7: Veredito, Exigencias e Relatorio
     print()
-    print("--- Proximas fases (nao implementadas) ---")
-    print("  Fase 6: Veredito, Exigencias e Relatorio")
+    print("--- Fase 6: Veredito, Exigencias e Relatorio ---")
+
+    # D-20: Se ART ou Atestado ausente, nao gerar veredito
+    if not pacote.art or not pacote.atestado:
+        print("  ERRO: ART ou Atestado ausente — veredito nao gerado")
+        return {
+            "status": "error",
+            "erro": "ART ou Atestado ausente — veredito nao pode ser gerado",
+            "art": pacote.art.caminho.name if pacote.art else None,
+            "atestado": pacote.atestado.caminho.name if pacote.atestado else None,
+        }
+
+    veredito_resultado = verdict.calcular_veredito(
+        resultado_cruzamento=resultado_cruzamento,
+        resultado_compliance=resultado_compliance,
+        resultados_metadata=resultados_metadata,
+        resultados_assinatura=resultados_assinatura,
+    )
+    print(f"  Veredito: {veredito_resultado.tipo.value}")
+    print(f"  Score: {veredito_resultado.score:.2f}")
+    print(f"  Itens verificados: {len(veredito_resultado.itens_verificados)}")
+    print(f"  Exigencias: {len(veredito_resultado.exigencias)}")
+    if veredito_resultado.exigencias:
+        for exig in veredito_resultado.exigencias:
+            print(f"    - {exig}")
+
+    # Extract profissional/contratante names from ART analysis for report header
+    art_analise = resultados_analise.get(TipoDocumento.ART.value)
+    profissional_nome = art_analise.profissional.nome if art_analise and art_analise.profissional else None
+    contratante_nome = art_analise.contratante.nome if art_analise and art_analise.contratante else None
+
+    # D-18: par_name from input directory name
+    par_name = input_dir.name
+
+    relatorio_paths = report.gerar_relatorios(
+        veredito=veredito_resultado,
+        pacote=pacote,
+        resultado_cruzamento=resultado_cruzamento,
+        resultado_compliance=resultado_compliance,
+        resultados_metadata=resultados_metadata,
+        resultados_assinatura=resultados_assinatura,
+        profissional_nome=profissional_nome,
+        contratante_nome=contratante_nome,
+        par_name=par_name,
+    )
 
     return {
-        "status": "analysis_complete",
-        "art": pacote.art.caminho.name if pacote.art else None,
-        "atestado": pacote.atestado.caminho.name if pacote.atestado else None,
-        "complementares": [d.caminho.name for d in pacote.complementares],
-        "nao_classificados": [d.caminho.name for d in pacote.nao_classificados],
-        "resultados_analise": {
-            tipo: resultado.model_dump()
-            for tipo, resultado in resultados_analise.items()
-        },
-        "resultados_metadata": {
-            tipo: {
-                "creator": m.creator,
-                "producer": m.producer,
-                "author": m.author,
-                "creation_date": str(m.creation_date) if m.creation_date else None,
-                "mod_date": str(m.mod_date) if m.mod_date else None,
-                "anomalias": m.anomalias,
-            }
-            for tipo, m in resultados_metadata.items()
-        },
-        "resultados_assinatura": {
-            tipo: {
-                "presente": a.presente,
-                "quantidade": a.quantidade,
-                "signatarios": a.signatarios,
-            }
-            for tipo, a in resultados_assinatura.items()
-        },
-        "resultado_cruzamento": resultado_cruzamento.model_dump() if resultado_cruzamento else None,
-        "resultado_compliance": resultado_compliance.model_dump(),
+        "status": "complete",
+        "veredito": veredito_resultado.tipo.value,
+        "score": veredito_resultado.score,
+        "exigencias": veredito_resultado.exigencias,
+        "relatorio_json": str(relatorio_paths.get("json_path", "")),
+        "relatorio_md": str(relatorio_paths.get("md_path", "")),
+        "par_name": par_name,
     }
 
 
 if __name__ == "__main__":
-    input_path = Path(sys.argv[1]) if len(sys.argv) > 1 else None
-    main(input_path)
+    if len(sys.argv) > 1:
+        # Single directory mode
+        input_path = Path(sys.argv[1])
+        main(input_path)
+    else:
+        # Process all par subdirectories in INPUT_DIR (per D-19)
+        input_base = config.INPUT_DIR
+        par_dirs = sorted([d for d in input_base.iterdir() if d.is_dir()])
+        if par_dirs:
+            for par_dir in par_dirs:
+                print(f"\n{'=' * 60}")
+                print(f"Processando par: {par_dir.name}")
+                print(f"{'=' * 60}")
+                try:
+                    resultado = main(par_dir)
+                    print(f"\nResultado: {resultado.get('veredito', resultado.get('status', 'N/A'))}")
+                except Exception as e:
+                    print(f"\nERRO ao processar {par_dir.name}: {e}")
+        else:
+            # Fallback: process INPUT_DIR directly (flat structure)
+            main(input_base)
