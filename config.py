@@ -6,6 +6,9 @@ NÃO é necessário alterar código em outros arquivos.
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # === OpenAI ===
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
