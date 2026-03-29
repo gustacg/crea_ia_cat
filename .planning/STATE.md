@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Phase 07 Plan 02 complete — report.py JSON + Markdown generation (16 tests passing)
-last_updated: "2026-03-29T06:55:34.031Z"
+status: Checkpoint — awaiting human verification
+stopped_at: Phase 07 Plan 03 Task 1 complete — main.py wired with verdict + report (4 integration tests passing). Task 2 checkpoint:human-verify pending.
+last_updated: "2026-03-29T07:10:00.000Z"
 progress:
   total_phases: 7
   completed_phases: 6
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 07 (verdict-exigencias-report) — EXECUTING
-Plan: 3 of 3
+Plan: 3 of 3 (checkpoint:human-verify)
 
 ## Performance Metrics
 
@@ -82,6 +82,9 @@ Plan: 3 of 3
 - [Phase 07-02-report]: Pydantic model_dump() for Cruzamento/Compliance; manual dict for MetadadosPDF/ResultadoAssinatura dataclasses
 - [Phase 07-02-report]: json.dumps default=str handles datetime/Path without custom encoder; ensure_ascii=False for utf-8 pt-BR text
 - [Phase 07-02-report]: Exigencias section omitted when empty — cleaner ADERENTE reports; section guard in markdown generator
+- [Phase 07-03-integration]: D-20 guard in main.py: early return when ART or Atestado absent prevents verdict generation on incomplete pars
+- [Phase 07-03-integration]: Multi-par __main__ block iterates INPUT_DIR subdirectories automatically (D-19)
+- [Phase 07-03-integration]: Return dict simplified to veredito/score/exigencias/relatorio_paths — removed redundant intermediate data
 
 ### Blockers/Concerns
 
@@ -90,6 +93,6 @@ Plan: 3 of 3
 
 ## Session Continuity
 
-Last session: 2026-03-29T06:55:34.027Z
-Stopped at: Phase 07 Plan 02 complete — report.py JSON + Markdown generation (16 tests passing)
+Last session: 2026-03-29T07:10:00.000Z
+Stopped at: Phase 07 Plan 03 Task 1 complete — checkpoint:human-verify reached for real pipeline run
 Resume file: None
